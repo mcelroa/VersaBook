@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const Model = require("../models/model");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
@@ -31,13 +30,19 @@ router.post("/signin", async (req, res) => {
   });
 
   if (user == null) {
-    return res.status(400).send("User with this email does not exist");
+    return res.send({ message: "User with this email does not exist" });
   }
   try {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      res.send("User Logged In");
+      res.send({
+        code: 1,
+        message: "User Logged In",
+      });
     } else {
-      res.send("Incorrect Password");
+      res.send({
+        code: 2,
+        message: "Incorrect Password",
+      });
     }
   } catch (error) {
     res.status(500).send();

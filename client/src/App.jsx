@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
 import "./styles.css";
-import axios from "axios";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -12,6 +11,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
